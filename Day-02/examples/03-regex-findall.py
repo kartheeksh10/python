@@ -1,10 +1,12 @@
 import re
 
-text = "The quick brown fox"
-pattern = r"brown"
+text = "can you get me some water? fill the water into a bottle"
+pattern = r"water"
 
-search = re.search(pattern, text)
-if search:
-    print("Pattern found:", search.group())
+# findall() give All matches in a (list) 
+# group() can't be used with findall() because it gives one result object
+findall = re.findall(pattern, text)
+if findall:
+    print("Pattern found:", findall)
 else:
     print("Pattern not found")
