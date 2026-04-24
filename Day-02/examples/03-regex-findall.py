@@ -1,5 +1,70 @@
 import re
 
+# UNDERSTANDING RAW STRINGS (r"")
+print("=== WHAT DOES 'r' MEAN BEFORE STRINGS? ===\n")
+
+# The 'r' creates a RAW STRING - it treats backslashes literally
+# This is very important for regex patterns!
+
+# Example: Regular string vs Raw string
+print("Regular string:")
+regular_string = "Hello\nWorld"  # \n is interpreted as newline
+print(f"'{regular_string}'")
+print()
+
+print("Raw string:")
+raw_string = r"Hello\nWorld"  # \n is treated as literal characters
+print(f"'{raw_string}'")
+print()
+
+# Why is this important for regex?
+print("=== WHY RAW STRINGS ARE IMPORTANT FOR REGEX ===\n")
+
+# Example 1: Finding backslashes in text
+text_with_backslash = "File path: C:\\Users\\John\\Documents"
+print(f"Text: {text_with_backslash}")
+
+# Without raw string - CONFUSING!
+pattern_normal = "\\\\Users"  # Need 4 backslashes to match 2!
+matches_normal = re.findall(pattern_normal, text_with_backslash)
+print(f"Normal string pattern: '{pattern_normal}'")
+print(f"Matches: {matches_normal}")
+
+# With raw string - CLEAR!
+pattern_raw = r"\\Users"  # Only need 2 backslashes
+matches_raw = re.findall(pattern_raw, text_with_backslash)
+print(f"Raw string pattern: '{pattern_raw}'")
+print(f"Matches: {matches_raw}")
+print()
+
+# Example 2: Digit patterns
+print("=== DIGIT PATTERNS EXAMPLE ===")
+text_digits = "I have 25 apples and 100 oranges"
+print(f"Text: {text_digits}")
+
+# Both work the same for simple patterns like \d
+pattern_normal_digit = "\\d+"  # Need to escape the backslash
+pattern_raw_digit = r"\d+"     # Raw string - cleaner and more readable
+
+matches_normal_digit = re.findall(pattern_normal_digit, text_digits)
+matches_raw_digit = re.findall(pattern_raw_digit, text_digits)
+
+print(f"Normal string: '{pattern_normal_digit}' -> {matches_normal_digit}")
+print(f"Raw string: '{pattern_raw_digit}' -> {matches_raw_digit}")
+print()
+
+print("=== KEY POINTS ABOUT RAW STRINGS ===")
+print("1. Raw strings treat backslashes (\\) as literal characters")
+print("2. Regular strings interpret backslashes as escape characters")
+print("3. Raw strings make regex patterns much more readable")
+print("4. Always use raw strings for regex patterns: r'pattern'")
+print("5. Examples of escape characters in regular strings:")
+print("   \\n = newline")
+print("   \\t = tab")
+print("   \\' = single quote")
+print("   \\\\ = literal backslash")
+print()
+
 # BEGINNER REGEX EXAMPLES - Step by Step Learning
 
 print("=== BASIC REGEX PATTERNS ===\n")
