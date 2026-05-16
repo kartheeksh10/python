@@ -3,7 +3,7 @@ import re
 text = "The quick brown fox"
 pattern = r"quick"
 
-match = re.match(pattern, text)
+match = re.search(pattern, text)
 if match:
     print("Match found:", match.group())
 else:
